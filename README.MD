@@ -7,14 +7,14 @@ This is a wrapper around Oracle JDBC driver that connects to the database using 
 
 Url format: `jdbc:ryaltech:oraid:@<path_to_properties>`. For example `jdbc:ryaltech:oraid:@/opt/creproperties/mydb.properties`
 
-Usage.  This driver relies on Oracle JDBC driver. At runtime ojdbc6.jar should be on the classpath. To build ojdbc6.jar should be placed in lib directory. 
+Usage. This driver relies on Oracle JDBC driver. At runtime ojdbc6.jar should be on the classpath. Both jars need to have appropriate permissions to be used. To build Oracle Identity Driver ojdbc6.jar should be placed in the lib directory.
 
 Driver can be used in one of two ways:
 
 1. Add the driver to the classpath and then use it as any other JDBC driver. Driver class is com.ryaltech.jdbc.OracleIdentityDriver
 2. Add the driver JAR passing -javaagent to the JVM. For example -javaagent:/home/arykov/identityoraclejdbc/target/OracleIdentityDriver.jar. In this case you should be using oracle.jdbc.OracleDriver and calls will be routed to com.ryaltech.jdbc.OracleIdentityDriver for urls starting with `jdbc:ryaltech:oraid:`.
 
-To create this property file, use com.ryaltech.jdbc.StoreConnProperties utility `java -classpath OracleIdentityDriver.jar com.ryaltech.jdbc.StoreConnProperties -url jdbc:oracle:thin:@oraclehost:1521:XE -user dbuser -s /opt/creproperties/mydb.properties -password`. 
+To create property file for DB connectivity use com.ryaltech.jdbc.StoreConnProperties utility `java -classpath OracleIdentityDriver.jar com.ryaltech.jdbc.StoreConnProperties -url jdbc:oracle:thin:@oraclehost:1521:XE -user dbuser -s /opt/creproperties/mydb.properties -password`. 
 
 Note that:
 
