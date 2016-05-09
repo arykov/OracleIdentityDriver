@@ -1,5 +1,5 @@
 Oracle Identity JDBC Driver
-======================
+===========================
 
 For background on why this driver was created check the blog post [here](http://blog.ryaltech.com/2016/05/06/crystal-identitypropagation).
 
@@ -7,7 +7,9 @@ This is a wrapper around Oracle JDBC driver that connects to the database using 
 
 Url format: `jdbc:ryaltech:oraid:@<path_to_properties>`. For example `jdbc:ryaltech:oraid:@/opt/creproperties/mydb.properties`
 
-Usage.  Driver can be used in one of two ways:
+Usage.  This driver relies on Oracle JDBC driver. At runtime ojdbc6.jar should be on the classpath. To build ojdbc6.jar should be placed in lib directory. 
+
+Driver can be used in one of two ways:
 
 1. Add the driver to the classpath and then use it as any other JDBC driver. Driver class is com.ryaltech.jdbc.OracleIdentityDriver
 2. Add the driver JAR passing -javaagent to the JVM. For example -javaagent:/home/arykov/identityoraclejdbc/target/OracleIdentityDriver.jar. In this case you should be using oracle.jdbc.OracleDriver and calls will be routed to com.ryaltech.jdbc.OracleIdentityDriver for urls starting with `jdbc:ryaltech:oraid:`.
