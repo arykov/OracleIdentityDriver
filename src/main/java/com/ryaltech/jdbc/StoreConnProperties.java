@@ -110,12 +110,17 @@ public class StoreConnProperties {
 
 				// replace with Files.setPosixFilePermissions once Java 6
 				// support is no longer required
-				Process p = Runtime.getRuntime().exec(
+				try{
+					Process p = Runtime.getRuntime().exec(
 						"chmod 400 " + keyFile.getAbsolutePath());
-				p.waitFor();
-				if (p.exitValue() != 0) {
-					System.out
-							.println("Failed to make the file readable only by owner. Please, make sure it is done manually.");
+					p.waitFor();
+					if (p.exitValue() != 0) {
+						throw new RuntimeException("Failed to make the file readable only by owner. Please, make sure it is done manually.");
+					}
+				}catch(RuntimeException rex){
+					throw rex;
+				}catch(Exception ex){
+					throw new RuntimeException("Failed to make the file readable only by owner. Please, make sure it is done manually.", ex);
 				}
 			}
 			return readFileFully(keyFile);

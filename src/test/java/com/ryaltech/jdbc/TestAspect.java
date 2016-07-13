@@ -5,6 +5,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
+import java.io.File;
 import java.sql.SQLException;
 import java.sql.SQLRecoverableException;
 import java.util.Properties;
@@ -34,6 +35,7 @@ public class TestAspect {
 	static final String property_file_location="target/bad.properties";
 	@Test
 	public void testConnectRyaltech()throws Exception{
+		new File("target/sys.dat").delete();
 		new StoreConnProperties(property_file_location).saveJdbcConnInfo(new JdbcConnInfo(){{user="user";password="password";url=oracle_url;}});
 		
 		try{
